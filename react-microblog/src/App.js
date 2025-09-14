@@ -1,44 +1,10 @@
-function RenderArray() {
-  const data = ['one', 'two', 'three'];
-  return (
-    <>{data}</>
-  )
-}
+import Stack from "react-bootstrap/Stack"
+import Container from 'react-bootstrap/Container';
 
-function FormatedArray() {
-  // Return <ul><li>one</li><li>two</li><li>three</li></ul>
-  const data = ['one', 'two', 'three'];
-  return (
-    <ul>
-      {data.map(element => {
-        return <li>{element}</li>
-      })}
-    </ul>
-  )
-}
-
-function GetPosts() {
-  const posts = [
-    {
-      id: 1,
-      text: 'Hello, world!',
-      timestamp: 'a minute ago',
-      author: {
-        username: 'susan',
-      },
-    },
-    {
-      id: 2,
-      text: 'Second post',
-      timestamp: 'an hour ago',
-      author: {
-        username: 'john',
-      },
-    },
-
-  ];
-  return posts;
-}
+import Sidebar from './components/Sidebar';
+import Header from './components/Header';
+import Posts from "./components/Posts";
+import Body from "./components/Body";
 
 
 function App() {
@@ -62,21 +28,12 @@ function App() {
   ];
 
   return (
-    <>
-      <h1>Microblog</h1>
-      {posts.length === 0 ?
-      <p>No posts</p>
-      :
-      posts.map(post => {
-        return (
-          <p key={post.id}>
-            <b>{post.author.username}</b> &mdash; {post.timestamp}
-            <br />
-            {post.text}
-          </p>
-        );
-      })}
-    </>
+    <Container fluid className="App">
+      <Header />
+      <Body sidebar>
+        <Posts />
+      </Body>
+    </Container>
   );
 }
 
